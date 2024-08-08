@@ -12,11 +12,12 @@ namespace ScavBirthdayParty
     {
         public static ManualLogSource logger;
 
-        public static ConfigEntry<bool> HeadshotOnly { get; set; }
-        public static ConfigEntry<bool> EnableHooray { get; set; }
-        public static ConfigEntry<bool> EnableConfetti { get; set; }
+        public static ConfigEntry<bool> headshotOnly { get; set; }
+        public static ConfigEntry<bool> enableHooray { get; set; }
+        public static ConfigEntry<bool> enableConfetti { get; set; }
         public static ConfigEntry<int> confettiAmount { get; set; }
         public static ConfigEntry<int> confettiForce { get; set; }
+        public static ConfigEntry<int> confettiChance { get; set; }
         public static ConfigEntry<float> hoorayVolume { get; set; }
 
         public static GameObject confettiEffectPrefab;
@@ -28,11 +29,12 @@ namespace ScavBirthdayParty
         {
             logger = Logger;
 
-            HeadshotOnly = Config.Bind("1. Settings", "Only On Headshots", true);
-            EnableHooray = Config.Bind("1. Settings", "Enable Hooray Sound", true);
-            EnableConfetti = Config.Bind("1. Settings", "Enable Confetti Effect", true);
+            headshotOnly = Config.Bind("1. Settings", "Only On Headshots", true);
+            enableHooray = Config.Bind("1. Settings", "Enable Hooray Sound", true);
+            enableConfetti = Config.Bind("1. Settings", "Enable Confetti Effect", true);
             confettiAmount = Config.Bind("2. Confetti", "Confetti Amount", 256, "Max 1024");
             confettiForce = Config.Bind("2. Confetti", "Confetti Force", 2);
+            confettiChance = Config.Bind("2. Confetti", "Confetti Chance", 100, new ConfigDescription("", new AcceptableValueRange<int>(0, 100)));
             hoorayVolume = Config.Bind("3. Hooray", "Hooray Volume", 0.5f, new ConfigDescription("", new AcceptableValueRange<float>(0.0f, 1.0f)));
 
             confettiAmount.SettingChanged += (sender, args) =>

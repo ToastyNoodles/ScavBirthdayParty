@@ -15,20 +15,21 @@ namespace ScavBirthdayParty
         [PatchPostfix]
         public static void Postfix(IPlayer aggressor, DamageInfo damageInfo, EBodyPart bodyPart, EDamageType lethalDamageType)
         {
-            if (ScavBirthdayParty.HeadshotOnly.Value && bodyPart != EBodyPart.Head) { return; }
+            if (Random.Range(0, 100) > ScavBirthdayParty.confettiChance.Value) { return; }
+            if (ScavBirthdayParty.headshotOnly.Value && bodyPart != EBodyPart.Head) { return; }
 
             CreateScavBirthdayEffect(damageInfo);
         }
 
         private static void CreateScavBirthdayEffect(DamageInfo damageInfo)
         {
-            if (ScavBirthdayParty.EnableConfetti.Value)
+            if (ScavBirthdayParty.enableConfetti.Value)
             {
                 GameObject newConfettiEffect = GameObject.Instantiate(ScavBirthdayParty.confettiEffectPrefab);
                 newConfettiEffect.transform.position = damageInfo.HitPoint;
             }
             
-            if (ScavBirthdayParty.EnableHooray.Value)
+            if (ScavBirthdayParty.enableHooray.Value)
             {
                 GameObject newHooraySound = GameObject.Instantiate(ScavBirthdayParty.hooraySoundPrefab);
                 newHooraySound.transform.position = damageInfo.HitPoint;
