@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ScavBirthdayParty
 {
-    [BepInPlugin("com.noodles.scavbirthdayparty", "Scav Birthday Party", "1.0")]
+    [BepInPlugin("com.noodles.scavbirthdayparty", "Scav Birthday Party", "1.1")]
     public class ScavBirthdayParty : BaseUnityPlugin
     {
         public static ManualLogSource logger;
